@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const reviewForm = document.getElementById("reviewForm");
     const reviewList = document.getElementById("reviewList");
 
+    const BACKEND_URL = "https://backend-dzfe.onrender.com";  // Update this with your Render backend URL
+
     // Handle Admin Login
     if (loginForm) {
         loginForm.addEventListener("submit", function (event) {
@@ -62,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             // Send review to backend
-            fetch("http://localhost:3000/submit-review", {
+            fetch(`${BACKEND_URL}/submit-review`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -82,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fetch and display reviews in admin panel
     function fetchReviews() {
-        fetch("http://localhost:3000/get-reviews")
+        fetch(`${BACKEND_URL}/get-reviews`)
             .then(response => response.json())
             .then(data => {
                 reviewList.innerHTML = "";
@@ -97,4 +99,5 @@ document.addEventListener("DOMContentLoaded", function () {
             });
     }
 });
+
 
